@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework
 {
     public class Cart
     {
-        public int CalculatePrice(List<Book> bookIdList, int pricePerBook)
+        public double CalculatePrice(List<Book> bookIdList, int pricePerBook)
         {
-            var price = 0;
             int distinctIdCount = bookIdList.GroupBy(b => b.id).Count();
-            if (distinctIdCount == 1)
+            double price = distinctIdCount * pricePerBook * GetDiscountRate(distinctIdCount);
+            return price + (bookIdList.Count - distinctIdCount) * pricePerBook;
+        }
+
+        private double GetDiscountRate(int distinctIdCount)
+        {
+            switch (distinctIdCount)
             {
-                price = 100;
+                case 1:
+                    return 1;
+                case 2:
+                    return 0.95;
+                case 3:
+                    return 0.9;
+                case 4:
+                    return 0.8;
+                case 5:
+                    return 0.75;
+                default:
+                    return 1;
             }
-            if (distinctIdCount == 2)
-            {
-                price = 190;
-            }
-            if (distinctIdCount == 3)
-            {
-                price = 270;
-            }
-            if (distinctIdCount == 4)
-            {
-                price = 320;
-            }
-            if (distinctIdCount == 5)
-            {
-                price = 375;
-            }
-            return price + (bookIdList.Count - distinctIdCount) * 100;
         }
     }
 
