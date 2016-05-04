@@ -123,5 +123,26 @@ namespace Homework.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod()]
+        public void CalculatePrice_4_Same_Book_Should_Return_400()
+        {
+            //arrange
+            var target = new Cart();
+            var bookList = new List<Book>() { 
+                new Book() { id = 1}, 
+                new Book() { id = 1},
+                new Book() { id = 1},
+                new Book() { id = 1}
+            };
+            var pricePerBook = 100;
+
+            var expected = 400;
+
+            //act
+            var actual = target.CalculatePrice(bookList, pricePerBook);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
