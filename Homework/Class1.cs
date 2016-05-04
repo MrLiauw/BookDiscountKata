@@ -24,6 +24,10 @@ namespace Homework
             {
                 price = 270;
             }
+            if (distinctIdCount == 4)
+            {
+                price = 320;
+            }
             return price + (bookIdList.Count - distinctIdCount) * 100;
         }
     }
