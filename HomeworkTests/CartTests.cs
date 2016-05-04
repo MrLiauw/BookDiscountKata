@@ -15,12 +15,13 @@ namespace Homework.Tests
         {
             //arrange
             var target = new Cart();
-            var bookList = new List<Book>(){new Book(){id=1, price = 100}};
+            var bookList = new List<Book>(){new Book(){id=1}};
+            var pricePerBook = 100;
 
             var expected = 100;
 
             //act
-            var actual = target.CalculatePrice(bookList);
+            var actual = target.CalculatePrice(bookList, pricePerBook);
 
             Assert.AreEqual(expected, actual);
         }
@@ -31,14 +32,15 @@ namespace Homework.Tests
             //arrange
             var target = new Cart();
             var bookList = new List<Book>() { 
-                new Book() { id = 1, price = 100 }, 
-                new Book() { id = 1, price = 100 } 
+                new Book() { id = 1}, 
+                new Book() { id = 1} 
             };
+            var pricePerBook = 100;
 
             var expected = 200;
 
             //act
-            var actual = target.CalculatePrice(bookList);
+            var actual = target.CalculatePrice(bookList, pricePerBook);
 
             Assert.AreEqual(expected, actual);
         }
@@ -49,14 +51,15 @@ namespace Homework.Tests
             //arrange
             var target = new Cart();
             var bookList = new List<Book>() { 
-                new Book() { id = 1, price = 100 }, 
-                new Book() { id = 2, price = 100 } 
+                new Book() { id = 1}, 
+                new Book() { id = 2} 
             };
+            var pricePerBook = 100;
 
             var expected = 190;
 
             //act
-            var actual = target.CalculatePrice(bookList);
+            var actual = target.CalculatePrice(bookList, pricePerBook);
 
             Assert.AreEqual(expected, actual);
         }
