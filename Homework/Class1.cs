@@ -7,24 +7,24 @@ namespace Homework
     {
         public double CalculatePrice(List<Book> bookIdList, int pricePerBook)
         {
-            var distinctIdCount = bookIdList.GroupBy(b => b.id).Count();
-            var priceOfDifferentBooks = GetTotalPriceOfDifferentBooks(pricePerBook, distinctIdCount);
-            return priceOfDifferentBooks + GetPriceOfDuplicatedBooks(bookIdList, pricePerBook, distinctIdCount);
+            var uniqueBooksCount = bookIdList.GroupBy(b => b.id).Count();
+            var priceOfUniqueBooks = GetTotalPriceOfUniqueBooks(pricePerBook, uniqueBooksCount);
+            return priceOfUniqueBooks + GetTotalPriceOfDuplicatedBooks(bookIdList, pricePerBook, uniqueBooksCount);
         }
 
-        private static int GetPriceOfDuplicatedBooks(List<Book> bookIdList, int pricePerBook, int distinctIdCount)
+        private static int GetTotalPriceOfDuplicatedBooks(List<Book> bookIdList, int pricePerBook, int distinctIdCount)
         {
             return (bookIdList.Count - distinctIdCount) * pricePerBook;
         }
 
-        private double GetTotalPriceOfDifferentBooks(int pricePerBook, int distinctIdCount)
+        private double GetTotalPriceOfUniqueBooks(int pricePerBook, int distinctIdCount)
         {
             return distinctIdCount * pricePerBook * GetDiscountRate(distinctIdCount);
         }
 
-        private double GetDiscountRate(int distinctIdCount)
+        private double GetDiscountRate(int uniqueBooksCount)
         {
-            switch (distinctIdCount)
+            switch (uniqueBooksCount)
             {
                 case 1:
                     return 1;
