@@ -12,14 +12,14 @@ namespace Homework
             return priceOfUniqueBooks + GetTotalPriceOfDuplicatedBooks(bookIdList, pricePerBook, uniqueBooksCount);
         }
 
-        private static int GetTotalPriceOfDuplicatedBooks(List<Book> bookIdList, int pricePerBook, int distinctIdCount)
+        private static int GetTotalPriceOfDuplicatedBooks(List<Book> bookIdList, int pricePerBook, int uniqueBooksCount)
         {
-            return (bookIdList.Count - distinctIdCount) * pricePerBook;
+            return (bookIdList.Count - uniqueBooksCount) * pricePerBook;
         }
 
-        private double GetTotalPriceOfUniqueBooks(int pricePerBook, int distinctIdCount)
+        private double GetTotalPriceOfUniqueBooks(int pricePerBook, int uniqueBooksCount)
         {
-            return distinctIdCount * pricePerBook * GetDiscountRate(distinctIdCount);
+            return uniqueBooksCount * pricePerBook * GetDiscountRate(uniqueBooksCount);
         }
 
         private double GetDiscountRate(int uniqueBooksCount)
